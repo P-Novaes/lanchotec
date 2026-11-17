@@ -1,0 +1,68 @@
+@model IEnumerable<lanchotec.Models.PedidoFilaItem>
+@{
+    ViewData["Title"] = "Fila de Pedidos";
+}
+
+<section class="tb-fila-page">
+    <div class="tb-container tb-fila-container">
+        <!-- Floating Doodles -->
+        <img src="~/images/doodle-leaf.svg" alt="" class="tb-doodle-leaf-fila tb-leaf-fila-top" />
+        <img src="~/images/doodle-leaf.svg" alt="" class="tb-doodle-leaf-fila tb-leaf-fila-left" />
+        <img src="~/images/doodle-star.svg" alt="" class="tb-doodle-star-fila tb-star-fila-top-right" />
+        <img src="~/images/doodle-star.svg" alt="" class="tb-doodle-star-fila tb-star-fila-mid-right" />
+        <img src="~/images/doodle-star.svg" alt="" class="tb-doodle-star-fila tb-star-fila-bottom-left" />
+
+        <!-- Header Row -->
+        <div class="tb-fila-header-row">
+            <h1 class="tb-fila-title">FILA</h1>
+            <a asp-controller="Pedido" asp-action="Montar" class="tb-btn-pill-green">
+                + NOVO PEDIDO
+            </a>
+        </div>
+
+        <!-- Big Royal Blue Container (Page 4) -->
+        <div class="tb-fila-blue-box">
+            <div class="tb-fila-cards-grid">
+                @foreach (var item in Model)
+                {
+                    <article class="tb-fila-card">
+                        <div class="tb-fila-card-header">
+                            <span class="tb-fila-badge-senha">#@item.NumeroSenha</span>
+                            <span class="tb-fila-status-tag">@item.Status</span>
+                        </div>
+
+                        <div class="tb-fila-field">
+                            <span class="tb-fila-label">Nome:</span>
+                            <strong class="tb-fila-value">@item.NomeCliente</strong>
+                        </div>
+
+                        <div class="tb-fila-field">
+                            <span class="tb-fila-label">Lanche:</span>
+                            <strong class="tb-fila-value">@item.LancheBase</strong>
+                        </div>
+
+                        <div class="tb-fila-field">
+                            <span class="tb-fila-label">Complemento:</span>
+                            <strong class="tb-fila-value">
+                                @(string.IsNullOrWhiteSpace(item.Complementos) ? "Nenhum" : item.Complementos)
+                            </strong>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(item.Bebida) && item.Bebida != "Sem bebida")
+                        {
+                            <div class="tb-fila-field">
+                                <span class="tb-fila-label">Bebida:</span>
+                                <strong class="tb-fila-value">@item.Bebida</strong>
+                            </div>
+                        }
+
+                        <div class="tb-fila-card-footer">
+                            <small class="tb-fila-time">@item.HoraPedido.ToString("HH:mm")</small>
+                            <span class="tb-fila-price">@item.ValorTotal.ToString("C")</span>
+                        </div>
+                    </article>
+                }
+            </div>
+        </div>
+    </div>
+</section>

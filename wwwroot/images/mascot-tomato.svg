@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Leaves / stem on head -->
+    <path d="M100 45 C100 25, 115 15, 125 15 C122 28, 110 38, 100 45 Z" fill="#e88938" stroke="#ffffff" />
+    <path d="M95 45 C85 22, 65 20, 60 22 C65 35, 82 40, 95 45 Z" fill="#e88938" stroke="#ffffff" />
+    <path d="M100 45 L102 30" stroke-width="4" stroke="#ffffff" />
+    <!-- Round Body -->
+    <circle cx="100" cy="115" r="65" fill="#f5eedd" stroke="#004cb3" stroke-width="4" />
+    <!-- Character big cartoon eyes -->
+    <ellipse cx="80" cy="100" rx="9" ry="14" fill="#ffffff" stroke="#004cb3" stroke-width="3" />
+    <ellipse cx="120" cy="100" rx="9" ry="14" fill="#ffffff" stroke="#004cb3" stroke-width="3" />
+    <ellipse cx="83" cy="102" rx="4.5" ry="7" fill="#004cb3" stroke="none" />
+    <ellipse cx="123" cy="102" rx="4.5" ry="7" fill="#004cb3" stroke="none" />
+    <circle cx="85" cy="99" r="1.5" fill="#ffffff" stroke="none" />
+    <circle cx="125" cy="99" r="1.5" fill="#ffffff" stroke="none" />
+    <!-- Cheerful big smile -->
+    <path d="M72 122 Q100 152 128 122" stroke="#004cb3" stroke-width="4" fill="none" />
+    <!-- Dimples -->
+    <path d="M68 120 Q69 126 73 124" stroke="#004cb3" stroke-width="3" />
+    <path d="M132 120 Q131 126 127 124" stroke="#004cb3" stroke-width="3" />
+    <!-- Cute hands -->
+    <path d="M38 115 C20 120, 15 135, 30 145" stroke="#ffffff" stroke-width="3.5" />
+    <path d="M162 115 C180 120, 185 135, 170 145" stroke="#ffffff" stroke-width="3.5" />
+    <!-- Legs with Striped Socks -->
+    <path d="M82 178 L78 212" stroke="#ffffff" stroke-width="4" />
+    <path d="M118 178 L122 212" stroke="#ffffff" stroke-width="4" />
+    <!-- Stripes on socks -->
+    <line x1="75" y1="190" x2="85" y2="191" stroke="#004cb3" stroke-width="3" />
+    <line x1="74" y1="200" x2="84" y2="201" stroke="#004cb3" stroke-width="3" />
+    <line x1="115" y1="190" x2="125" y2="191" stroke="#004cb3" stroke-width="3" />
+    <line x1="116" y1="200" x2="126" y2="201" stroke="#004cb3" stroke-width="3" />
+    <!-- Sneakers -->
+    <path d="M62 225 C62 214, 86 214, 86 225 Z" fill="#ffffff" stroke="#004cb3" stroke-width="3" />
+    <rect x="58" y="225" width="32" height="6" rx="2" fill="#004cb3" />
+    <path d="M114 225 C114 214, 138 214, 138 225 Z" fill="#ffffff" stroke="#004cb3" stroke-width="3" />
+    <rect x="110" y="225" width="32" height="6" rx="2" fill="#004cb3" />
+</svg>
+

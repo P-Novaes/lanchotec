@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" fill="none" stroke="#0e6038" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Onion Sprout / Top leaf -->
+    <path d="M78 45 C78 15, 60 5, 55 5 C55 20, 70 35, 78 45 Z" fill="#0e6038" />
+    <path d="M82 45 C85 20, 105 10, 110 12 C108 28, 92 38, 82 45 Z" fill="#0e6038" />
+    <path d="M80 45 C80 25, 82 10, 85 8 C88 22, 85 35, 80 45 Z" fill="#0e6038" />
+    <!-- Onion Body (Tear drop / Bulb) -->
+    <path d="M80 45 C125 55, 135 115, 80 145 C25 115, 35 55, 80 45 Z" fill="#f5eedd" />
+    <!-- Texture contours -->
+    <path d="M80 45 C98 65, 102 120, 80 145" stroke-width="2" stroke-dasharray="1 0" />
+    <path d="M80 45 C62 65, 58 120, 80 145" stroke-width="2" stroke-dasharray="1 0" />
+    <!-- Cartoon Eyes -->
+    <ellipse cx="68" cy="90" rx="4" ry="7" fill="#0e6038" stroke="none" />
+    <ellipse cx="92" cy="90" rx="4" ry="7" fill="#0e6038" stroke="none" />
+    <!-- Cheeks & Happy Smile -->
+    <path d="M60 102 Q80 120 100 102" stroke-width="3.5" />
+    <path d="M68 108 Q80 125 92 108" fill="#0e6038" stroke="none" />
+    <path d="M57 99 Q58 103 62 101" />
+    <path d="M103 99 Q102 103 98 101" />
+    <!-- Left Arm with Glove on Hip -->
+    <path d="M42 95 C25 95, 20 115, 38 125" />
+    <!-- Left Hand / Glove -->
+    <path d="M38 125 C33 128, 38 135, 42 130 C45 125, 44 122, 38 125" />
+    <!-- Right Arm with Glove Waving -->
+    <path d="M118 95 C135 90, 145 75, 142 62" />
+    <!-- Right Hand Peace / Wave -->
+    <circle cx="142" cy="60" r="5" fill="#f5eedd" />
+    <path d="M142 55 L144 48" />
+    <path d="M145 57 L150 52" />
+    <!-- Legs with Striped Socks -->
+    <path d="M65 142 L60 170" stroke-width="3.5" />
+    <path d="M95 142 L100 170" stroke-width="3.5" />
+    <!-- Socks Stripes -->
+    <line x1="58" y1="158" x2="64" y2="159" stroke-width="2.5" />
+    <line x1="57" y1="164" x2="63" y2="165" stroke-width="2.5" />
+    <line x1="96" y1="158" x2="102" y2="159" stroke-width="2.5" />
+    <line x1="97" y1="164" x2="103" y2="165" stroke-width="2.5" />
+    <!-- Sneakers -->
+    <path d="M50 178 C50 170, 68 170, 68 178 L45 178 Z" fill="#0e6038" />
+    <rect x="42" y="178" width="28" height="5" rx="2" fill="#f5eedd" stroke="#0e6038" stroke-width="2" />
+    <path d="M92 178 C92 170, 110 170, 110 178 L115 178 Z" fill="#0e6038" />
+    <rect x="90" y="178" width="28" height="5" rx="2" fill="#f5eedd" stroke="#0e6038" stroke-width="2" />
+</svg>
+

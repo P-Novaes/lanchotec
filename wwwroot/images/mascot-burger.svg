@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 180" fill="none" stroke="#0e6038" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top Bun -->
+    <path d="M35 60 C35 25, 125 25, 125 60 Z" fill="#f5eedd" />
+    <!-- Sesame Seeds -->
+    <ellipse cx="60" cy="40" rx="1.8" ry="3.5" transform="rotate(-15 60 40)" fill="#0e6038" stroke="none" />
+    <ellipse cx="80" cy="35" rx="1.8" ry="3.5" fill="#0e6038" stroke="none" />
+    <ellipse cx="100" cy="42" rx="1.8" ry="3.5" transform="rotate(20 100 42)" fill="#0e6038" stroke="none" />
+    <!-- Face on Bun -->
+    <path d="M68 48 Q72 45 76 48" stroke-width="2.5" />
+    <path d="M84 48 Q88 45 92 48" stroke-width="2.5" />
+    <path d="M74 54 Q80 59 86 54" stroke-width="2.5" />
+    <!-- Lettuce frill -->
+    <path d="M30 65 Q45 58 60 65 Q75 58 90 65 Q105 58 120 65 Q132 60 135 66" />
+    <!-- Tomato / Cheese slice -->
+    <path d="M34 72 L126 72 L105 82 L75 72 Z" fill="#f5eedd" />
+    <!-- Patty with wavy mouth / texture -->
+    <rect x="32" y="78" width="96" height="16" rx="8" fill="#f5eedd" />
+    <!-- Bottom Bun -->
+    <path d="M40 98 Q80 112 120 98 L122 94 L38 94 Z" fill="#f5eedd" />
+    <!-- Left Arm -->
+    <path d="M32 78 C15 75, 15 105, 30 110" />
+    <circle cx="30" cy="110" r="4" fill="#f5eedd" />
+    <!-- Right Arm (Peace sign / Wave!) -->
+    <path d="M125 78 C140 70, 150 55, 146 40" />
+    <!-- Peace sign fingers -->
+    <path d="M146 40 L144 26" stroke-width="3" />
+    <path d="M147 38 L156 28" stroke-width="3" />
+    <circle cx="146" cy="40" r="5" fill="#f5eedd" />
+    <!-- Legs -->
+    <path d="M65 106 L62 140" stroke-width="3.5" />
+    <path d="M95 106 L98 140" stroke-width="3.5" />
+    <!-- Shoes -->
+    <path d="M50 148 C50 140, 72 140, 72 148 Z" fill="#0e6038" />
+    <rect x="45" y="148" width="30" height="5" rx="2" fill="#f5eedd" stroke="#0e6038" stroke-width="2" />
+    <path d="M88 148 C88 140, 110 140, 110 148 Z" fill="#0e6038" />
+    <rect x="85" y="148" width="30" height="5" rx="2" fill="#f5eedd" stroke="#0e6038" stroke-width="2" />
+</svg>
+

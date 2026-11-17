@@ -1,0 +1,1388 @@
+/* ==========================================================================
+   TECH BURGUER - DESIGN RETRÔ DINER / FAST-FOOD VINTAGE
+   Inspirado 100% no protótipo visual do PDF (sem aspecto de IA genérica)
+   ========================================================================== */
+
+:root {
+    /* Paleta Oficial do PDF */
+    --tb-cream: #F5EEDD;
+    --tb-cream-light: #FBF8F2;
+    --tb-cream-dark: #EADFC7;
+    --tb-green: #0E6038;
+    --tb-green-dark: #094728;
+    --tb-green-light: #167A49;
+    --tb-blue: #004CB3;
+    --tb-blue-dark: #003C8F;
+    --tb-soft-blue: #CBD7E6;
+    --tb-soft-blue-hover: #BFCEE0;
+    --tb-yellow: #F0BC3B;
+    --tb-yellow-dark: #DFA728;
+    --tb-dark: #19261C;
+    --tb-white: #FFFFFF;
+
+    /* Tipografia Retrô */
+    --tb-font-display: 'Caprasimo', Georgia, 'Times New Roman', serif;
+    --tb-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Reset Básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.tb-body {
+    font-family: var(--tb-font-body);
+    background-color: var(--tb-cream);
+    color: var(--tb-dark);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.tb-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+}
+
+.tb-main {
+    flex: 1;
+}
+
+/* ==========================================================================
+   FAIXA QUADRICULADA (CHECKERBOARD DINER RIBBON)
+   ========================================================================== */
+.tb-checkerboard {
+    height: 22px;
+    width: 100%;
+    background-image: conic-gradient(var(--tb-green) 90deg, var(--tb-cream) 90deg 180deg, var(--tb-green) 180deg 270deg, var(--tb-cream) 270deg);
+    background-size: 22px 22px;
+    display: block;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGAÇÃO RETRÔ
+   ========================================================================== */
+.tb-navbar {
+    background-color: var(--tb-cream);
+    border-bottom: 2px solid var(--tb-cream-dark);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.tb-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+
+.tb-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--tb-green);
+}
+
+.tb-brand-icon {
+    width: 44px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.tb-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.tb-brand-title {
+    font-family: var(--tb-font-display);
+    font-size: 1.5rem;
+    line-height: 1.1;
+    color: var(--tb-green);
+    letter-spacing: -0.02em;
+}
+
+.tb-brand-sub {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--tb-green);
+    opacity: 0.85;
+    letter-spacing: 0.05em;
+}
+
+.tb-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tb-nav-link {
+    text-decoration: none;
+    color: var(--tb-green);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 8px 18px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.tb-nav-link:hover {
+    background-color: var(--tb-cream-dark);
+    color: var(--tb-green-dark);
+}
+
+.tb-nav-link.active {
+    background-color: var(--tb-green);
+    color: var(--tb-cream);
+}
+
+.tb-nav-pill {
+    background-color: var(--tb-blue);
+    color: var(--tb-white) !important;
+}
+
+.tb-nav-pill:hover {
+    background-color: var(--tb-blue-dark);
+}
+
+.tb-nav-pill.active {
+    background-color: var(--tb-blue-dark);
+    border-color: var(--tb-white);
+}
+
+/* ==========================================================================
+   PAGE 1: HEADER ILUSTRADO COM MASCOTES
+   ========================================================================== */
+.tb-top-banner {
+    background-color: var(--tb-cream);
+    padding-top: 36px;
+    position: relative;
+}
+
+.tb-banner-container {
+    text-align: center;
+    padding-bottom: 24px;
+}
+
+.tb-banner-header {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.tb-banner-title {
+    font-family: var(--tb-font-display);
+    font-size: 3.5rem;
+    color: var(--tb-green);
+    letter-spacing: -0.02em;
+}
+
+.tb-banner-logo-icon {
+    width: 60px;
+    height: 50px;
+}
+
+/* Doodles decorativos */
+.tb-doodle {
+    position: absolute;
+    pointer-events: none;
+}
+
+.tb-doodle-top-left {
+    top: 20px;
+    left: 40px;
+    width: 48px;
+}
+
+.tb-doodle-top-right {
+    top: 25px;
+    right: 40px;
+    width: 24px;
+    color: var(--tb-green);
+}
+
+.tb-doodle-mid-left {
+    top: 110px;
+    left: 140px;
+    width: 28px;
+    transform: rotate(-15deg);
+}
+
+.tb-doodle-mid-right {
+    top: 100px;
+    right: 130px;
+    width: 28px;
+    transform: rotate(30deg);
+}
+
+/* Linha de Mascotes */
+.tb-mascots-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.tb-mascot-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tb-mascot-onion img {
+    height: 190px;
+    width: auto;
+}
+
+.tb-mascot-burger {
+    transform: translateY(-8px);
+}
+
+.tb-mascot-burger img:last-child {
+    height: 175px;
+    width: auto;
+}
+
+.tb-doodle-star-sub {
+    position: absolute;
+    top: 100px;
+    left: -35px;
+    width: 24px;
+    color: var(--tb-green);
+}
+
+.tb-mascot-cup img {
+    height: 185px;
+    width: auto;
+}
+
+/* ==========================================================================
+   PAGE 1: SEÇÃO VERDE (PADRÕES GOF + FOTO DO HAMBÚRGUER)
+   ========================================================================== */
+.tb-green-section {
+    background-color: var(--tb-green);
+    color: var(--tb-cream);
+    padding: 60px 0 70px 0;
+    position: relative;
+}
+
+.tb-green-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.tb-green-title-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.tb-green-main-title {
+    font-family: var(--tb-font-display);
+    font-size: 4rem;
+    line-height: 1.05;
+    color: var(--tb-cream);
+    letter-spacing: -0.02em;
+}
+
+.tb-star-white {
+    width: 26px;
+    height: 26px;
+    color: var(--tb-cream);
+    filter: brightness(0) invert(1);
+    position: absolute;
+}
+
+.tb-star-green-top {
+    top: -15px;
+    left: -35px;
+}
+
+.tb-green-intro {
+    font-size: 1.08rem;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    color: var(--tb-cream);
+    opacity: 0.96;
+}
+
+.tb-patterns-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.tb-patterns-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--tb-cream);
+}
+
+.tb-bullet-dot {
+    width: 9px;
+    height: 9px;
+    background-color: var(--tb-cream);
+    border-radius: 50%;
+    margin-top: 8px;
+    flex-shrink: 0;
+}
+
+.tb-patterns-bullets code {
+    background-color: rgba(245, 238, 221, 0.18);
+    color: var(--tb-cream);
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-size: 0.88em;
+    font-family: monospace;
+}
+
+.tb-green-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.tb-burger-photo-frame {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 4 / 5;
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
+.tb-burger-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tb-brush-accent {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tb-squiggle-under-photo {
+    width: 48px;
+    margin-right: -20px;
+    z-index: 2;
+}
+
+.tb-brush-swipe {
+    width: 180px;
+    height: auto;
+}
+
+/* ==========================================================================
+   PAGE 1: SEÇÃO AZUL (CARDAPIO)
+   ========================================================================== */
+.tb-blue-section {
+    background-color: var(--tb-blue);
+    color: var(--tb-white);
+    padding: 70px 0 80px 0;
+    position: relative;
+}
+
+.tb-blue-container {
+    position: relative;
+}
+
+.tb-star-blue {
+    top: 20px;
+    left: 20px;
+}
+
+.tb-blue-grid {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.tb-blue-mascot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.tb-tomato-mascot {
+    width: 100%;
+    max-width: 270px;
+    height: auto;
+}
+
+.tb-squiggle-blue {
+    position: absolute;
+    bottom: 25px;
+    right: 20px;
+    width: 45px;
+}
+
+.tb-cardapio-title {
+    font-family: var(--tb-font-display);
+    font-style: italic;
+    font-size: 3.2rem;
+    letter-spacing: 0.04em;
+    color: var(--tb-white);
+    margin-bottom: 34px;
+}
+
+.tb-cardapio-items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 36px;
+    margin-bottom: 44px;
+}
+
+.tb-cardapio-item-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--tb-white);
+    padding: 12px 14px;
+    border-radius: 14px;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.tb-cardapio-item-row:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+    transform: translateY(-2px);
+}
+
+.tb-white-circle-dot {
+    width: 14px;
+    height: 14px;
+    background-color: var(--tb-white);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.tb-item-details {
+    flex: 1;
+}
+
+.tb-item-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.tb-item-name {
+    font-family: var(--tb-font-display);
+    font-size: 1.35rem;
+    color: var(--tb-white);
+    letter-spacing: -0.01em;
+}
+
+.tb-item-price-tag {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--tb-cream);
+    opacity: 0.9;
+}
+
+.tb-item-base {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.tb-cardapio-action-box {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+/* Botão Pílula Retrô Creme */
+.tb-btn-pill-cream {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--tb-cream);
+    color: var(--tb-blue);
+    font-family: var(--tb-font-display);
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 16px 44px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.tb-btn-pill-cream:hover {
+    background-color: var(--tb-white);
+    transform: translateY(-3px);
+    color: var(--tb-blue-dark);
+}
+
+.tb-btn-pill-lg {
+    width: 100%;
+    padding: 18px 24px;
+    font-size: 1.25rem;
+    color: var(--tb-green);
+}
+
+.tb-btn-pill-lg:hover {
+    color: var(--tb-green-dark);
+}
+
+.tb-btn-pill-sm {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+}
+
+.tb-btn-pill-green {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--tb-green);
+    color: var(--tb-cream);
+    font-family: var(--tb-font-display);
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.tb-btn-pill-green:hover {
+    background-color: var(--tb-green-dark);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   FOOTER (IDÊNTICO AO PDF PAGE 1)
+   ========================================================================== */
+.tb-footer {
+    background-color: var(--tb-cream);
+    padding-top: 50px;
+    border-top: 2px solid var(--tb-cream-dark);
+}
+
+.tb-footer-brand-row {
+    margin-bottom: 30px;
+}
+
+.tb-footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tb-footer-logo .tb-brand-title {
+    font-size: 2.5rem;
+}
+
+.tb-footer-leaf {
+    width: 24px;
+    height: 24px;
+    transform: rotate(20deg);
+}
+
+.tb-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 36px;
+    padding-bottom: 48px;
+}
+
+.tb-footer-col h4 {
+    font-family: var(--tb-font-display);
+    font-size: 1.15rem;
+    color: var(--tb-green);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.tb-footer-bold {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--tb-green);
+}
+
+.tb-footer-time {
+    font-family: var(--tb-font-display);
+    font-size: 1.25rem;
+    color: var(--tb-green);
+    margin-top: 4px;
+}
+
+.tb-footer-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tb-phone, .tb-email {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--tb-green);
+}
+
+.tb-social-icons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.tb-social-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--tb-green);
+    color: var(--tb-cream);
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tb-social-circle:hover {
+    background-color: var(--tb-green-dark);
+    transform: scale(1.1);
+}
+
+.tb-social-circle svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ==========================================================================
+   PAGE 2: MONTAR PEDIDO (DIVISÃO RETRÔ CONFORME O PDF)
+   ========================================================================== */
+.tb-montar-page {
+    background-color: var(--tb-cream);
+    min-height: calc(100vh - 72px);
+    display: flex;
+}
+
+.tb-montar-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.35fr 0.95fr;
+    min-height: 100%;
+}
+
+/* Coluna Esquerda: Formulário Retrô */
+.tb-montar-left {
+    background-color: var(--tb-cream);
+    padding: 48px 60px;
+    position: relative;
+}
+
+.tb-montar-decorations {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.tb-decor-burger-top {
+    position: absolute;
+    top: 24px;
+    left: 40px;
+    width: 65px;
+}
+
+.tb-decor-fries-top {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    width: 60px;
+}
+
+.tb-decor-leaf-1 {
+    position: absolute;
+    top: 190px;
+    right: 60px;
+    width: 24px;
+    transform: rotate(25deg);
+}
+
+.tb-decor-leaf-2 {
+    position: absolute;
+    bottom: 40px;
+    left: 70px;
+    width: 24px;
+    transform: rotate(-35deg);
+}
+
+.tb-decor-star-1 {
+    position: absolute;
+    top: 70px;
+    right: 180px;
+    width: 22px;
+    color: var(--tb-green);
+}
+
+.tb-decor-star-2 {
+    position: absolute;
+    top: 290px;
+    right: 65px;
+    width: 22px;
+    color: var(--tb-green);
+}
+
+.tb-decor-squiggle {
+    position: absolute;
+    bottom: 110px;
+    right: 140px;
+    width: 50px;
+}
+
+.tb-montar-form {
+    position: relative;
+    z-index: 10;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 40px;
+}
+
+.tb-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tb-field-label-lower {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--tb-green);
+}
+
+.tb-input-soft {
+    width: 100%;
+    max-width: 340px;
+    background-color: var(--tb-soft-blue);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-family: var(--tb-font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--tb-dark);
+    outline: none;
+    transition: background-color 0.2s ease;
+}
+
+.tb-input-soft:focus {
+    background-color: #B8C7D8;
+}
+
+.tb-section-heading-green {
+    font-family: var(--tb-font-body);
+    font-weight: 800;
+    font-size: 1.12rem;
+    color: var(--tb-green);
+    letter-spacing: -0.01em;
+}
+
+.tb-select-soft {
+    width: 100%;
+    background-color: var(--tb-soft-blue);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: var(--tb-font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--tb-dark);
+    outline: none;
+    cursor: pointer;
+}
+
+.tb-clone-row {
+    margin-top: 6px;
+}
+
+.tb-checkbox-custom {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    background-color: rgba(14, 96, 56, 0.08);
+    padding: 10px 14px;
+    border-radius: 8px;
+}
+
+.tb-checkbox-custom input {
+    margin-top: 4px;
+}
+
+.tb-check-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    color: var(--tb-green);
+}
+
+.tb-check-text small {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Lista de Pílulas de Seleção (Decorator e Bebidas) */
+.tb-pills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tb-pill-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tb-pill-choice input {
+    display: none;
+}
+
+.tb-pill-indicator {
+    width: 44px;
+    height: 24px;
+    background-color: var(--tb-soft-blue);
+    border-radius: 999px;
+    flex-shrink: 0;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.tb-pill-indicator::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--tb-white);
+    top: 4px;
+    left: 4px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tb-pill-choice.checked .tb-pill-indicator {
+    background-color: var(--tb-green);
+}
+
+.tb-pill-choice.checked .tb-pill-indicator::after {
+    transform: translateX(20px);
+}
+
+.tb-pill-text {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--tb-green);
+}
+
+/* Coluna Direita: Sidebar Verde do Resumo (PDF Page 2) */
+.tb-montar-right {
+    background-color: var(--tb-green);
+    color: var(--tb-white);
+    padding: 56px 48px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tb-star-summary {
+    top: 24px;
+    right: 28px;
+}
+
+.tb-summary-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tb-summary-main-title {
+    font-family: var(--tb-font-display);
+    font-size: 2.5rem;
+    color: var(--tb-white);
+    margin-bottom: 40px;
+    letter-spacing: -0.01em;
+}
+
+.tb-summary-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    flex: 1;
+}
+
+.tb-summary-line {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tb-summary-key {
+    font-family: var(--tb-font-display);
+    font-size: 1.6rem;
+    color: var(--tb-white);
+    letter-spacing: -0.01em;
+}
+
+.tb-summary-val {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--tb-cream);
+    padding-left: 2px;
+}
+
+.tb-summary-line-total {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(245, 238, 221, 0.4);
+}
+
+.tb-summary-val-price {
+    font-family: var(--tb-font-display);
+    font-size: 2.2rem;
+    color: var(--tb-cream);
+}
+
+.tb-summary-btn-box {
+    margin-top: 48px;
+}
+
+/* ==========================================================================
+   PAGE 3: OBRIGADO POR COMPRAR (TEXTO ARQUEADO RETRÔ)
+   ========================================================================== */
+.tb-obrigado-page {
+    background-color: var(--tb-cream);
+    min-height: calc(100vh - 72px);
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.tb-obrigado-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tb-arched-text-wrapper {
+    width: 100%;
+    max-width: 820px;
+    margin-bottom: 10px;
+}
+
+.tb-arched-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.tb-arched-text {
+    font-family: var(--tb-font-display);
+    font-size: 64px;
+    fill: var(--tb-green);
+    letter-spacing: -0.01em;
+}
+
+.tb-obrigado-logo-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 40px;
+}
+
+.tb-obrigado-brand {
+    font-family: var(--tb-font-display);
+    font-size: 3.5rem;
+    color: var(--tb-green);
+}
+
+.tb-obrigado-burger-icon {
+    width: 65px;
+    height: 52px;
+}
+
+.tb-obrigado-leaf-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.tb-obrigado-arrow-btn {
+    width: 36px;
+    height: 36px;
+    color: var(--tb-green);
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.tb-obrigado-arrow-btn:hover {
+    transform: translateX(4px);
+}
+
+.tb-obrigado-arrow-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Recibo Retrô */
+.tb-ticket-card {
+    background-color: var(--tb-white);
+    border: 3px solid var(--tb-green);
+    border-radius: 20px;
+    padding: 28px 36px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 12px 30px rgba(14, 96, 56, 0.12);
+    text-align: left;
+}
+
+.tb-ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed var(--tb-cream-dark);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+}
+
+.tb-ticket-senha {
+    font-family: var(--tb-font-display);
+    font-size: 1.3rem;
+    color: var(--tb-green);
+}
+
+.tb-ticket-status {
+    background-color: var(--tb-green);
+    color: var(--tb-cream);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.tb-ticket-client {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.tb-ticket-desc {
+    color: #4A5A4E;
+    margin-bottom: 14px;
+    font-size: 0.98rem;
+}
+
+.tb-ticket-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 1.25rem;
+    color: var(--tb-green);
+    border-top: 1px solid var(--tb-cream-dark);
+    padding-top: 12px;
+}
+
+.tb-ticket-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.tb-ticket-actions {
+    margin-top: 12px;
+}
+
+/* ==========================================================================
+   PAGE 4: FILA DE PEDIDOS (CONTAINER AZUL COM CARDS CINZA-AZULADOS)
+   ========================================================================== */
+.tb-fila-page {
+    background-color: var(--tb-cream);
+    min-height: calc(100vh - 72px);
+    padding: 50px 0 80px 0;
+    position: relative;
+}
+
+.tb-fila-container {
+    position: relative;
+}
+
+/* Doodles da Fila */
+.tb-doodle-leaf-fila {
+    position: absolute;
+    width: 28px;
+    pointer-events: none;
+}
+
+.tb-leaf-fila-top {
+    top: -20px;
+    left: 230px;
+    transform: rotate(20deg);
+}
+
+.tb-leaf-fila-left {
+    top: 60px;
+    left: -20px;
+    transform: rotate(-40deg);
+}
+
+.tb-doodle-star-fila {
+    position: absolute;
+    pointer-events: none;
+    color: var(--tb-green);
+}
+
+.tb-star-fila-top-right {
+    top: -20px;
+    right: 20px;
+    width: 24px;
+}
+
+.tb-star-fila-mid-right {
+    top: 360px;
+    right: -25px;
+    width: 24px;
+}
+
+.tb-star-fila-bottom-left {
+    bottom: 20px;
+    left: -20px;
+    width: 24px;
+}
+
+.tb-fila-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.tb-fila-title {
+    font-family: var(--tb-font-display);
+    font-size: 3.5rem;
+    color: var(--tb-blue);
+    letter-spacing: -0.01em;
+}
+
+/* Container Azul Royal com Cantos Arredondados (PDF Page 4) */
+.tb-fila-blue-box {
+    background-color: var(--tb-blue);
+    border-radius: 36px;
+    padding: 48px 44px;
+    box-shadow: 0 16px 36px rgba(0, 76, 179, 0.2);
+}
+
+.tb-fila-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* Cards em cinza-azulado suave conforme o PDF */
+.tb-fila-card {
+    background-color: var(--tb-soft-blue);
+    border-radius: 28px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tb-fila-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.tb-fila-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed rgba(14, 96, 56, 0.2);
+    padding-bottom: 10px;
+}
+
+.tb-fila-badge-senha {
+    font-family: var(--tb-font-display);
+    font-size: 1.15rem;
+    color: var(--tb-green);
+}
+
+.tb-fila-status-tag {
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: var(--tb-green);
+    color: var(--tb-cream);
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.tb-fila-field {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 1.25rem;
+    line-height: 1.35;
+}
+
+.tb-fila-label {
+    font-family: var(--tb-font-display);
+    color: var(--tb-green);
+    font-size: 1.35rem;
+}
+
+.tb-fila-value {
+    color: var(--tb-dark);
+    font-weight: 600;
+    font-size: 1.15rem;
+}
+
+.tb-fila-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(14, 96, 56, 0.15);
+    padding-top: 12px;
+    margin-top: 8px;
+}
+
+.tb-fila-time {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4B6354;
+}
+
+.tb-fila-price {
+    font-family: var(--tb-font-display);
+    font-size: 1.2rem;
+    color: var(--tb-green);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (TABLETS E CELULARES)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .tb-green-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .tb-blue-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tb-blue-mascot-col {
+        order: -1;
+    }
+
+    .tb-tomato-mascot {
+        max-width: 200px;
+    }
+
+    .tb-cardapio-items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tb-montar-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .tb-montar-right {
+        padding: 40px 30px;
+    }
+
+    .tb-fila-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tb-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 640px) {
+    .tb-banner-title {
+        font-size: 2.4rem;
+    }
+
+    .tb-green-main-title {
+        font-size: 2.8rem;
+    }
+
+    .tb-cardapio-title {
+        font-size: 2.2rem;
+    }
+
+    .tb-mascots-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .tb-fila-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tb-fila-blue-box {
+        padding: 24px 18px;
+    }
+
+    .tb-montar-left {
+        padding: 30px 20px;
+    }
+
+    .tb-arched-text {
+        font-size: 40px;
+    }
+
+    .tb-obrigado-brand {
+        font-size: 2.2rem;
+    }
+}

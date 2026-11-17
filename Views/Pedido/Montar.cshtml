@@ -1,0 +1,250 @@
+@model lanchotec.Models.PedidoViewModel
+@{
+    ViewData["Title"] = "Personalizar Pedido";
+}
+
+<section class="tb-montar-page">
+    <div class="tb-montar-wrapper">
+        <!-- Coluna Esquerda: Formulário de Personalização (Fundo Creme) -->
+        <div class="tb-montar-left">
+            <!-- Header Doodles -->
+            <div class="tb-montar-decorations">
+                <img src="~/images/logo-burger.svg" alt="" class="tb-decor-burger-top" />
+                <img src="~/images/mascot-fries.svg" alt="" class="tb-decor-fries-top" />
+                <img src="~/images/doodle-leaf.svg" alt="" class="tb-decor-leaf-1" />
+                <img src="~/images/doodle-leaf.svg" alt="" class="tb-decor-leaf-2" />
+                <img src="~/images/doodle-star.svg" alt="" class="tb-decor-star-1" />
+                <img src="~/images/doodle-star.svg" alt="" class="tb-decor-star-2" />
+                <img src="~/images/doodle-squiggle.svg" alt="" class="tb-decor-squiggle" />
+            </div>
+
+            <form asp-controller="Pedido" asp-action="Montar" method="post" id="formPedidoMontar" class="tb-montar-form">
+                <!-- Campo: Seu Nome -->
+                <div class="tb-field-group">
+                    <label for="inputNomeCliente" class="tb-field-label-lower">seu nome:</label>
+                    <input asp-for="NomeCliente"
+                           id="inputNomeCliente"
+                           class="tb-input-soft"
+                           placeholder="Pedro"
+                           value="Pedro"
+                           required />
+                </div>
+
+                <!-- 1. ESCOLHA O PROTÓTIPO BASE (PROTOTYPE) -->
+                <div class="tb-field-group">
+                    <h3 class="tb-section-heading-green">1. ESCOLHA O PROTÓTIPO BASE (PROTOTYPE)</h3>
+                    <div class="tb-proto-select-box">
+                        <select asp-for="PrototipoId" id="selectPrototipo" class="tb-select-soft">
+                            @foreach (var item in Model.CardapioDisponivel)
+                            {
+                                <option value="@item.Id"
+                                        data-nome="@item.Nome"
+                                        data-preco="@item.PrecoBase.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                                        selected="@(Model.PrototipoId == item.Id)">
+                                    @item.Nome - @item.PrecoBase.ToString("C") (@item.Descricao)
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Protótipo Clone Option -->
+                    <div id="boxClonarXBacon" class="tb-clone-row" style="display: none;">
+                        <label class="tb-checkbox-custom">
+                            <input asp-for="ClonarComoXBacon" id="chkClonarXBacon" type="checkbox" />
+                            <span class="tb-check-custom-box"></span>
+                            <span class="tb-check-text">
+                                <strong>Clonar X-Burguer como novo X-Bacon</strong> (+ R$ 4,50)
+                                <small>Executa <code>LanchePrototype.Clonar()</code> derivando um novo lanche a partir do original.</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 2. ADICIONAIS DINÂMICOS (DECORATOR) -->
+                <div class="tb-field-group">
+                    <h3 class="tb-section-heading-green">2. ADICIONAIS DINÂMICOS (DECORATOR)</h3>
+                    <div class="tb-pills-list">
+                        <label class="tb-pill-choice">
+                            <input asp-for="AdicionarQueijo" type="checkbox" class="addon-check" data-label="Queijo Extra" data-preco="3.00" />
+                            <span class="tb-pill-indicator"></span>
+                            <span class="tb-pill-text">Queijo Extra (+ R$ 3,00)</span>
+                        </label>
+
+                        <label class="tb-pill-choice">
+                            <input asp-for="AdicionarBacon" type="checkbox" class="addon-check" data-label="Bacon Crocante" data-preco="4.50" />
+                            <span class="tb-pill-indicator"></span>
+                            <span class="tb-pill-text">Bacon Crocante (+ R$ 4,50)</span>
+                        </label>
+
+                        <label class="tb-pill-choice">
+                            <input asp-for="AdicionarOvo" type="checkbox" class="addon-check" data-label="Ovo Frito" data-preco="2.50" />
+                            <span class="tb-pill-indicator"></span>
+                            <span class="tb-pill-text">Ovo Frito (+ R$ 2,50)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 3. BEBIDAS -->
+                <div class="tb-field-group">
+                    <h3 class="tb-section-heading-green">3. BEBIDAS</h3>
+                    <div class="tb-pills-list">
+                        <label class="tb-pill-choice">
+                            <input type="radio" name="BebidaSelecionada" value="Nenhuma" class="drink-radio" data-label="Sem bebida" data-preco="0" checked />
+                            <span class="tb-pill-indicator"></span>
+                            <span class="tb-pill-text">Sem bebida</span>
+                        </label>
+
+                        <label class="tb-pill-choice">
+                            <input type="radio" name="BebidaSelecionada" value="Coca-Cola Lata|6.00" class="drink-radio" data-label="Coca-Cola Lata" data-preco="6.00" />
+                            <span class="tb-pill-indicator"></span>
+                            <span class="tb-pill-text">Coca-Cola Lata (+ R$ 6,00)</span>
+                        </label>
+
+                        <label class="tb-pill-choice">
+                            <input type="radio" name="BebidaSelecionada" value="Guaraná Antarctica Lata|5.50" class="drink-radio" data-label="Guaraná Antarctica" data-preco="5.50" />
+                            <span class="tb-pill-indicator"></span>
+                            <span class="tb-pill-text">Guaraná Antarctica (+ R$ 5,50)</span>
+                        </label>
+
+                        <label class="tb-pill-choice">
+                            <input type="radio" name="BebidaSelecionada" value="Suco Natural Laranja|8.00" class="drink-radio" data-label="Suco Natural de Laranja" data-preco="8.00" />
+                            <span class="tb-pill-indicator"></span>
+                            <span class="tb-pill-text">Suco Natural (+ R$ 8,00)</span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Coluna Direita: Resumo do Pedido (Fundo Verde Sólido - Idêntico ao PDF Page 2) -->
+        <aside class="tb-montar-right">
+            <img src="~/images/doodle-star.svg" alt="" class="tb-star-white tb-star-summary" />
+
+            <div class="tb-summary-inner">
+                <h2 class="tb-summary-main-title">RESUMO DO PEDIDO:</h2>
+
+                <div class="tb-summary-lines">
+                    <div class="tb-summary-line">
+                        <span class="tb-summary-key">Nome:</span>
+                        <span class="tb-summary-val" id="resumoNome">Pedro</span>
+                    </div>
+
+                    <div class="tb-summary-line">
+                        <span class="tb-summary-key">Lanche:</span>
+                        <span class="tb-summary-val" id="resumoLanche">X-Burguer</span>
+                    </div>
+
+                    <div class="tb-summary-line">
+                        <span class="tb-summary-key">Complemento:</span>
+                        <span class="tb-summary-val" id="resumoComplemento">Nenhum</span>
+                    </div>
+
+                    <div class="tb-summary-line">
+                        <span class="tb-summary-key">Bebida:</span>
+                        <span class="tb-summary-val" id="resumoBebida">Sem bebida</span>
+                    </div>
+
+                    <div class="tb-summary-line tb-summary-line-total">
+                        <span class="tb-summary-key">Valor:</span>
+                        <span class="tb-summary-val-price" id="resumoValor">R$ 18,00</span>
+                    </div>
+                </div>
+
+                <div class="tb-summary-btn-box">
+                    <button type="button" id="btnSubmitPedido" class="tb-btn-pill-cream tb-btn-pill-lg">
+                        FINALIZAR PEDIDO
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    (function () {
+        const inputNome = document.getElementById('inputNomeCliente');
+        const selectProto = document.getElementById('selectPrototipo');
+        const boxClonar = document.getElementById('boxClonarXBacon');
+        const chkClonar = document.getElementById('chkClonarXBacon');
+        const checksAddon = document.querySelectorAll('.addon-check');
+        const radiosDrink = document.querySelectorAll('.drink-radio');
+        const btnSubmit = document.getElementById('btnSubmitPedido');
+        const form = document.getElementById('formPedidoMontar');
+
+        const resumoNome = document.getElementById('resumoNome');
+        const resumoLanche = document.getElementById('resumoLanche');
+        const resumoComplemento = document.getElementById('resumoComplemento');
+        const resumoBebida = document.getElementById('resumoBebida');
+        const resumoValor = document.getElementById('resumoValor');
+
+        function formatBRL(val) {
+            return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function atualizarResumo() {
+            resumoNome.textContent = inputNome.value.trim() || 'Pedro';
+
+            let selectedOption = selectProto.options[selectProto.selectedIndex];
+            let protoId = selectProto.value;
+            let nomeLanche = selectedOption ? selectedOption.dataset.nome : 'X-Burguer';
+            let total = selectedOption ? parseFloat(selectedOption.dataset.preco) : 18.00;
+
+            if (protoId === "1") {
+                boxClonar.style.display = 'block';
+                if (chkClonar.checked) {
+                    nomeLanche = "X-Bacon (Clonado de X-Burguer)";
+                    total += 4.50;
+                }
+            } else {
+                boxClonar.style.display = 'none';
+                chkClonar.checked = false;
+            }
+
+            resumoLanche.textContent = nomeLanche;
+
+            const adicionais = [];
+            checksAddon.forEach(chk => {
+                const parentLabel = chk.closest('.tb-pill-choice');
+                if (chk.checked) {
+                    parentLabel.classList.add('checked');
+                    adicionais.push(chk.dataset.label);
+                    total += parseFloat(chk.dataset.preco);
+                } else {
+                    parentLabel.classList.remove('checked');
+                }
+            });
+            resumoComplemento.textContent = adicionais.length > 0 ? adicionais.join(', ') : 'Nenhum';
+
+            const bebida = document.querySelector('.drink-radio:checked');
+            radiosDrink.forEach(r => {
+                const parent = r.closest('.tb-pill-choice');
+                if (r.checked) parent.classList.add('checked');
+                else parent.classList.remove('checked');
+            });
+
+            if (bebida) {
+                resumoBebida.textContent = bebida.dataset.label;
+                total += parseFloat(bebida.dataset.preco);
+            }
+
+            resumoValor.textContent = formatBRL(total);
+        }
+
+        inputNome.addEventListener('input', atualizarResumo);
+        selectProto.addEventListener('change', atualizarResumo);
+        chkClonar.addEventListener('change', atualizarResumo);
+        checksAddon.forEach(c => c.addEventListener('change', atualizarResumo));
+        radiosDrink.forEach(d => d.addEventListener('change', atualizarResumo));
+
+        btnSubmit.addEventListener('click', () => {
+            if (!inputNome.value.trim()) {
+                inputNome.value = 'Pedro';
+            }
+            form.submit();
+        });
+
+        atualizarResumo();
+    })();
+</script>
+}

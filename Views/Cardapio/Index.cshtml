@@ -1,0 +1,135 @@
+@model IEnumerable<lanchotec.Models.Produto>
+@{
+    ViewData["Title"] = "Cardápio";
+}
+
+<!-- Top Illustrated Header (Page 1 Top) -->
+<section class="tb-top-banner">
+    <div class="tb-container tb-banner-container">
+        <!-- Floating Doodles -->
+        <img src="~/images/doodle-squiggle.svg" alt="" class="tb-doodle tb-doodle-top-left" />
+        <img src="~/images/doodle-star.svg" alt="" class="tb-doodle tb-doodle-top-right" />
+        <img src="~/images/doodle-leaf.svg" alt="" class="tb-doodle tb-doodle-mid-left" />
+        <img src="~/images/doodle-leaf.svg" alt="" class="tb-doodle tb-doodle-mid-right" />
+
+        <div class="tb-banner-header">
+            <h1 class="tb-banner-title">Tech Burguer</h1>
+            <img src="~/images/logo-burger.svg" alt="Burger Mascot Icon" class="tb-banner-logo-icon" />
+        </div>
+
+        <div class="tb-mascots-row">
+            <!-- Onion Mascot -->
+            <div class="tb-mascot-box tb-mascot-onion">
+                <img src="~/images/mascot-onion.svg" alt="Cebola Mascote" />
+            </div>
+
+            <!-- Burger Mascot -->
+            <div class="tb-mascot-box tb-mascot-burger">
+                <img src="~/images/doodle-star.svg" alt="" class="tb-doodle-star-sub" />
+                <img src="~/images/mascot-burger.svg" alt="Hambúrguer Mascote" />
+            </div>
+
+            <!-- Soda Cup Mascot -->
+            <div class="tb-mascot-box tb-mascot-cup">
+                <img src="~/images/mascot-cup.svg" alt="Copo Mascote" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkered border dividing Top Banner and Green Section -->
+    <div class="tb-checkerboard"></div>
+</section>
+
+<!-- Green Section: Apresentação e Padrões GoF (Page 1 Middle) -->
+<section class="tb-green-section">
+    <div class="tb-container tb-green-grid">
+        <div class="tb-green-content">
+            <div class="tb-green-title-wrapper">
+                <img src="~/images/doodle-star.svg" alt="" class="tb-star-white tb-star-green-top" />
+                <h2 class="tb-green-main-title">
+                    Tech<br />Burguer
+                </h2>
+            </div>
+
+            <p class="tb-green-intro">
+                Projeto acadêmico desenvolvido em <strong>ASP.NET Core MVC (.NET 8)</strong> demonstrando a integração entre arquitetura MVC e três padrões de projeto (GoF):
+            </p>
+
+            <ul class="tb-patterns-bullets">
+                <li>
+                    <span class="tb-bullet-dot"></span>
+                    <div>
+                        <strong>Iterator</strong> (<code>DesignPatterns/Iterator</code>): Percorre o catálogo de produtos (<code>Catalogo</code> / <code>CatalogoIterator</code>) no <code>CardapioController</code> sem expor a estrutura interna da coleção.
+                    </div>
+                </li>
+                <li>
+                    <span class="tb-bullet-dot"></span>
+                    <div>
+                        <strong>Prototype</strong> (<code>DesignPatterns/Prototype</code>): Permite clonar lanches pré-configurados (<code>LanchePrototype.Clonar()</code>) com cópia profunda da lista de ingredientes (ex.: derivar um X-Bacon a partir do X-Burger sem alterar o protótipo original).
+                    </div>
+                </li>
+                <li>
+                    <span class="tb-bullet-dot"></span>
+                    <div>
+                        <strong>Decorator</strong> (<code>DesignPatterns/Decorator</code>): Envolve o lanche clonado (<code>LancheBase</code>) com camadas dinâmicas (<code>QueijoDecorator</code>, <code>BaconDecorator</code>, <code>OvoDecorator</code>) para compor descrição e preço final em tempo de execução.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tb-green-visual">
+            <div class="tb-burger-photo-frame">
+                <img src="~/images/burger-hero.jpg" alt="Tech Burguer Suculento" class="tb-burger-photo" />
+            </div>
+            <div class="tb-brush-accent">
+                <img src="~/images/doodle-squiggle.svg" alt="" class="tb-squiggle-under-photo" />
+                <img src="~/images/doodle-brush.svg" alt="" class="tb-brush-swipe" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blue Section: CARDAPIO (Page 1 Lower) -->
+<section class="tb-blue-section" id="cardapio">
+    <div class="tb-container tb-blue-container">
+        <!-- Floating white star -->
+        <img src="~/images/doodle-star.svg" alt="" class="tb-star-white tb-star-blue" />
+
+        <div class="tb-blue-grid">
+            <!-- Left Mascot Column -->
+            <div class="tb-blue-mascot-col">
+                <img src="~/images/mascot-tomato.svg" alt="Tomate Mascote" class="tb-tomato-mascot" />
+                <img src="~/images/doodle-squiggle.svg" alt="" class="tb-squiggle-blue" />
+            </div>
+
+            <!-- Right Menu Items Column -->
+            <div class="tb-blue-content-col">
+                <h2 class="tb-cardapio-title">CARDAPIO</h2>
+
+                <div class="tb-cardapio-items-grid">
+                    @foreach (var item in Model)
+                    {
+                        <a asp-controller="Pedido" asp-action="Montar" asp-route-id="@item.Id" class="tb-cardapio-item-row" title="Clique para personalizar @item.Nome">
+                            <span class="tb-white-circle-dot"></span>
+                            <div class="tb-item-details">
+                                <div class="tb-item-header">
+                                    <h3 class="tb-item-name">@item.Nome</h3>
+                                    <span class="tb-item-price-tag">@item.PrecoBase.ToString("C")</span>
+                                </div>
+                                <p class="tb-item-base">
+                                    <strong>Base:</strong> @item.Descricao
+                                </p>
+                            </div>
+                        </a>
+                    }
+                </div>
+
+                <div class="tb-cardapio-action-box">
+                    <a asp-controller="Pedido" asp-action="Montar" class="tb-btn-pill-cream">
+                        ESCOLHER E PERSONALIZAR
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
