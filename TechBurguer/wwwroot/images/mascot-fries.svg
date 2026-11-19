@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 160" fill="none" stroke="#FF6B1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Fries sticking up -->
+    <rect x="35" y="25" width="12" height="50" rx="3" fill="#FFFFFF" transform="rotate(-10 35 25)" />
+    <rect x="52" y="15" width="13" height="60" rx="3" fill="#FFFFFF" transform="rotate(-2 52 15)" />
+    <rect x="70" y="12" width="12" height="65" rx="3" fill="#FFFFFF" transform="rotate(4 70 12)" />
+    <rect x="88" y="20" width="12" height="55" rx="3" fill="#FFFFFF" transform="rotate(12 88 20)" />
+    <rect x="100" y="32" width="11" height="45" rx="3" fill="#FFFFFF" transform="rotate(18 100 32)" />
+    <!-- Fries Box / Carton -->
+    <path d="M30 65 L42 140 L98 140 L110 65 C95 72, 80 62, 70 62 C60 62, 45 72, 30 65 Z" fill="#FFFFFF" />
+    <!-- Box Front Arc / Cutout -->
+    <path d="M40 75 Q70 95 100 75" />
+    <!-- Cool Eye / Monocle or Face -->
+    <circle cx="70" cy="105" r="14" fill="#FF6B1A" />
+    <circle cx="70" cy="105" r="7" fill="#FFFFFF" />
+</svg>
+

@@ -1,0 +1,99 @@
+@model TechBurguer.Models.PedidoFilaItem
+@{
+    ViewData["Title"] = "Obrigado por Comprar";
+}
+
+<section class="tb-obrigado-page">
+    <div class="tb-container tb-obrigado-container">
+        <!-- Arched Curved Text (Identical to PDF Page 3) -->
+        <div class="tb-arched-text-wrapper">
+            <svg viewBox="0 0 1000 280" class="tb-arched-svg">
+                <!-- Arc definition curving upwards -->
+                <path id="curveObrigado" d="M 80,240 A 620,380 0 0,1 920,240" fill="none" />
+                <text class="tb-arched-text">
+                    <textPath href="#curveObrigado" startOffset="50%" text-anchor="middle">
+                        Obrigado por comprar
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+
+        <!-- Logo Row: Tech Burguer + Burger Icon + Leaf + Arrow -->
+        <div class="tb-obrigado-logo-row">
+            <img src="~/images/logo-techburguer.png" alt="Tech Burguer" class="tb-obrigado-logo-img" />
+            <a asp-controller="Pedido" asp-action="Fila" class="tb-obrigado-arrow-btn" title="Ir para a Fila de Pedidos">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Order Ticket Card (Estilo Recibo de Diner Retrô) -->
+        <div class="tb-ticket-card">
+            @if (Model != null)
+            {
+                <div class="tb-ticket-header">
+                    <span class="tb-ticket-senha">SENHA #@Model.NumeroSenha</span>
+                    <span class="tb-ticket-status">@Model.Status</span>
+                </div>
+
+                <div class="tb-ticket-body">
+                    <p class="tb-ticket-client">Cliente: <strong>@Model.NomeCliente</strong></p>
+                    <p class="tb-ticket-desc">@Model.DescricaoCompleta</p>
+
+                    <!-- ITERATOR: os itens do pedido são percorridos sem a View conhecer a lista interna -->
+                    <div class="tb-ticket-itens">
+                        @{ var iterador = Model.Itens.CreateIterator(); }
+                        @while (iterador.HasNext())
+                        {
+                            var linha = iterador.Next();
+                            <div class="tb-ticket-item">
+                                <span>@linha.Descricao</span>
+                                <span>@linha.Valor.ToString("C")</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="tb-ticket-price-row">
+                        <span>Total Pago:</span>
+                        <strong>@Model.ValorTotal.ToString("C")</strong>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="tb-ticket-body">
+                    <p class="tb-ticket-desc">Seu pedido foi registrado com sucesso!</p>
+                </div>
+            }
+
+            <div class="tb-ticket-footer">
+                <p>Redirecionando para a fila em <span id="countdown">15</span>s...</p>
+                <div class="tb-ticket-actions">
+                    <a asp-controller="Pedido" asp-action="Fila" class="tb-btn-pill-cream tb-btn-pill-sm">
+                        Ver Fila Agora →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    (function () {
+        let segundos = 15;
+        const label = document.getElementById('countdown');
+        const destino = '@Url.Action("Fila", "Pedido")';
+
+        const timer = setInterval(() => {
+            segundos--;
+            if (segundos > 0 && label) {
+                label.textContent = segundos;
+            } else {
+                clearInterval(timer);
+                window.location.href = destino;
+            }
+        }, 1000);
+    })();
+</script>
+}

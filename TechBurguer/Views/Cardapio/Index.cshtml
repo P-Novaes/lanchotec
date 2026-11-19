@@ -1,0 +1,50 @@
+@model IEnumerable<TechBurguer.Models.Produto>
+@{
+    ViewData["Title"] = "Cardápio";
+}
+
+<!-- Blue Section: CARDAPIO (Page 1 Lower) -->
+<section class="tb-cardapio-section" id="cardapio">
+    <div class="tb-container tb-cardapio-container">
+        <!-- Floating white star -->
+        <img src="~/images/doodle-star.svg" alt="" class="tb-star-white tb-star-orange" />
+
+        <div class="tb-cardapio-grid">
+            <!-- Left Mascot Column -->
+            <div class="tb-cardapio-mascot-col">
+                <img src="~/images/mascot-tomato.svg" alt="Tomate Mascote" class="tb-tomato-mascot" />
+                <img src="~/images/doodle-squiggle.svg" alt="" class="tb-squiggle-orange" />
+            </div>
+
+            <!-- Right Menu Items Column -->
+            <div class="tb-cardapio-content-col">
+                <h2 class="tb-cardapio-title">CARDAPIO</h2>
+
+                <div class="tb-cardapio-items-grid">
+                    @foreach (var item in Model)
+                    {
+                        var ehLanche = item.Categoria == Categorias.Lanche;
+                        <a asp-controller="Pedido" asp-action="Montar" asp-route-id="@(ehLanche ? item.Id : null)" class="tb-cardapio-item-row" title="@(ehLanche ? "Clique para personalizar " + item.Nome : "Escolha na tela de montar o pedido")">
+                            <span class="tb-white-circle-dot"></span>
+                            <div class="tb-item-details">
+                                <div class="tb-item-header">
+                                    <h3 class="tb-item-name">@item.Nome</h3>
+                                    <span class="tb-item-price-tag">@item.PrecoBase.ToString("C")</span>
+                                </div>
+                                <p class="tb-item-base">
+                                    <strong>@(ehLanche ? "Base:" : item.Categoria + ":")</strong> @item.Descricao
+                                </p>
+                            </div>
+                        </a>
+                    }
+                </div>
+
+                <div class="tb-cardapio-action-box">
+                    <a asp-controller="Pedido" asp-action="Montar" class="tb-btn-pill-solid-navy">
+                        ESCOLHER E PERSONALIZAR
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

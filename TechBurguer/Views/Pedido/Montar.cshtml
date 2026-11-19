@@ -1,0 +1,275 @@
+@model TechBurguer.Models.PedidoViewModel
+@{
+    ViewData["Title"] = "Personalizar Pedido";
+}
+
+<section class="tb-montar-page">
+    <div class="tb-montar-wrapper">
+        <!-- Coluna Esquerda: Formulário de Personalização (Fundo Creme) -->
+        <div class="tb-montar-left">
+            <!-- Header Doodles -->
+            <div class="tb-montar-decorations">
+                <img src="~/images/logo-burger.svg" alt="" class="tb-decor-burger-top" />
+                <img src="~/images/mascot-fries.svg" alt="" class="tb-decor-fries-top" />
+                <img src="~/images/doodle-leaf.svg" alt="" class="tb-decor-leaf-1" />
+                <img src="~/images/doodle-leaf.svg" alt="" class="tb-decor-leaf-2" />
+                <img src="~/images/doodle-star.svg" alt="" class="tb-decor-star-1" />
+                <img src="~/images/doodle-star.svg" alt="" class="tb-decor-star-2" />
+                <img src="~/images/doodle-squiggle.svg" alt="" class="tb-decor-squiggle" />
+            </div>
+
+            <form asp-controller="Pedido" asp-action="Montar" method="post" id="formPedidoMontar" class="tb-montar-form">
+                <!-- Campo: Seu Nome -->
+                <div class="tb-field-group">
+                    <label for="inputNomeCliente" class="tb-field-label-lower">Seu nome:</label>
+                    <input asp-for="NomeCliente"
+                           id="inputNomeCliente"
+                           class="tb-input-soft"
+                           placeholder="Pedro"
+                           value="Pedro"
+                           required />
+                </div>
+
+                <!-- 1. ESCOLHA O PROTÓTIPO BASE (PROTOTYPE) -->
+                <div class="tb-field-group">
+                    <h3 class="tb-section-heading-green">1. ESCOLHA O PROTÓTIPO BASE (PROTOTYPE)</h3>
+                    <div class="tb-proto-select-box">
+                        <!-- Select oculto para manter o binding do formulário -->
+                        <select asp-for="PrototipoId" id="selectPrototipo" class="tb-select-hidden" aria-hidden="true" tabindex="-1">
+                            @foreach (var item in Model.CardapioDisponivel)
+                            {
+                                <option value="@item.Id"
+                                        data-nome="@item.Nome"
+                                        data-preco="@item.PrecoBase.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                                        selected="@(Model.PrototipoId == item.Id)">
+                                    @item.Nome - @item.PrecoBase.ToString("C") (@item.Descricao)
+                                </option>
+                            }
+                        </select>
+
+                        <!-- Cards visuais estilizados para seleção do Protótipo -->
+                        <div class="tb-proto-cards-grid" role="radiogroup" aria-label="Escolha o protótipo base">
+                            @foreach (var item in Model.CardapioDisponivel)
+                            {
+                                var isSelected = Model.PrototipoId == item.Id;
+                                <button type="button"
+                                        class="tb-proto-card @(isSelected ? "selected" : "")"
+                                        data-proto-id="@item.Id"
+                                        aria-pressed="@(isSelected ? "true" : "false")">
+                                    <div class="tb-proto-card-top">
+                                        <span class="tb-proto-card-title">@item.Nome</span>
+                                        <span class="tb-proto-card-price">@item.PrecoBase.ToString("C")</span>
+                                    </div>
+                                    <p class="tb-proto-card-desc">@item.Descricao</p>
+                                    <span class="tb-proto-card-badge">
+                                        <span class="tb-proto-dot"></span> Protótipo Base
+                                    </span>
+                                </button>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Protótipo Clone Option -->
+                    <div id="boxClonarXBacon" class="tb-clone-row" style="display: none;">
+                        <label class="tb-checkbox-custom">
+                            <input asp-for="ClonarComoXBacon" id="chkClonarXBacon" type="checkbox" />
+                            <span class="tb-check-custom-box"></span>
+                            <span class="tb-check-text">
+                                <strong>Clonar X-Burguer como novo X-Bacon</strong> (+ @Model.CloneAcrescimo.ToString("C"))
+                                <small>Executa <code>LanchePrototype.Clonar()</code> derivando um novo lanche a partir do original.</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 2. ADICIONAIS DINÂMICOS (DECORATOR) -->
+                <div class="tb-field-group">
+                    <h3 class="tb-section-heading-green">2. ADICIONAIS DINÂMICOS (DECORATOR)</h3>
+                    <div class="tb-pills-list">
+                        @foreach (var adicional in Model.AdicionaisDisponiveis)
+                        {
+                            <label class="tb-pill-choice">
+                                <input name="Adicionais" type="checkbox" value="@adicional.Chave" class="addon-check"
+                                       data-label="@adicional.Nome"
+                                       data-preco="@adicional.Preco.ToString(System.Globalization.CultureInfo.InvariantCulture)" />
+                                <span class="tb-pill-indicator"></span>
+                                <span class="tb-pill-text">@adicional.Nome (+ @adicional.Preco.ToString("C"))</span>
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <!-- 3. BEBIDAS -->
+                <div class="tb-field-group">
+                    <h3 class="tb-section-heading-green">3. BEBIDAS</h3>
+                    <div class="tb-pills-list">
+                        <label class="tb-pill-choice">
+                            <input type="radio" name="BebidaId" value="0" class="drink-radio" data-label="Sem bebida" data-preco="0" checked />
+                            <span class="tb-pill-indicator"></span>
+                            <span class="tb-pill-text">Sem bebida</span>
+                        </label>
+
+                        @foreach (var bebida in Model.Bebidas)
+                        {
+                            <label class="tb-pill-choice">
+                                <input type="radio" name="BebidaId" value="@bebida.Id" class="drink-radio"
+                                       data-label="@bebida.Nome"
+                                       data-preco="@bebida.PrecoBase.ToString(System.Globalization.CultureInfo.InvariantCulture)" />
+                                <span class="tb-pill-indicator"></span>
+                                <span class="tb-pill-text">@bebida.Nome (+ @bebida.PrecoBase.ToString("C"))</span>
+                            </label>
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Coluna Direita: Resumo do Pedido (Fundo Verde Sólido - Idêntico ao PDF Page 2) -->
+        <aside class="tb-montar-right">
+            <img src="~/images/doodle-star.svg" alt="" class="tb-star-white tb-star-summary" />
+
+            <div class="tb-summary-inner">
+                <h2 class="tb-summary-main-title">RESUMO DO PEDIDO:</h2>
+
+                <div class="tb-summary-lines">
+                    <div class="tb-summary-line">
+                        <span class="tb-summary-key">Nome:</span>
+                        <span class="tb-summary-val" id="resumoNome">Pedro</span>
+                    </div>
+
+                    <div class="tb-summary-line">
+                        <span class="tb-summary-key">Lanche:</span>
+                        <span class="tb-summary-val" id="resumoLanche">X-Burguer</span>
+                    </div>
+
+                    <div class="tb-summary-line">
+                        <span class="tb-summary-key">Complemento:</span>
+                        <span class="tb-summary-val" id="resumoComplemento">Nenhum</span>
+                    </div>
+
+                    <div class="tb-summary-line">
+                        <span class="tb-summary-key">Bebida:</span>
+                        <span class="tb-summary-val" id="resumoBebida">Sem bebida</span>
+                    </div>
+
+                    <div class="tb-summary-line tb-summary-line-total">
+                        <span class="tb-summary-key">Valor:</span>
+                        <span class="tb-summary-val-price" id="resumoValor">R$ 18,00</span>
+                    </div>
+                </div>
+
+                <div class="tb-summary-btn-box">
+                    <button type="button" id="btnSubmitPedido" class="tb-btn-pill-cream tb-btn-pill-lg">
+                        FINALIZAR PEDIDO
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    (function () {
+        const CLONE_ID = "@Model.ClonePrototipoId";
+        const CLONE_ACRESCIMO = @Model.CloneAcrescimo.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+        const inputNome = document.getElementById('inputNomeCliente');
+        const selectProto = document.getElementById('selectPrototipo');
+        const boxClonar = document.getElementById('boxClonarXBacon');
+        const chkClonar = document.getElementById('chkClonarXBacon');
+        const checksAddon = document.querySelectorAll('.addon-check');
+        const radiosDrink = document.querySelectorAll('.drink-radio');
+        const btnSubmit = document.getElementById('btnSubmitPedido');
+        const form = document.getElementById('formPedidoMontar');
+
+        const resumoNome = document.getElementById('resumoNome');
+        const resumoLanche = document.getElementById('resumoLanche');
+        const resumoComplemento = document.getElementById('resumoComplemento');
+        const resumoBebida = document.getElementById('resumoBebida');
+        const resumoValor = document.getElementById('resumoValor');
+
+        function formatBRL(val) {
+            return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function atualizarResumo() {
+            resumoNome.textContent = inputNome.value.trim() || 'Pedro';
+
+            let selectedOption = selectProto.options[selectProto.selectedIndex];
+            let protoId = selectProto.value;
+            let nomeLanche = selectedOption ? selectedOption.dataset.nome : 'X-Burguer';
+            let total = selectedOption ? parseFloat(selectedOption.dataset.preco) : 18.00;
+
+            if (protoId === CLONE_ID) {
+                boxClonar.style.display = 'block';
+                if (chkClonar.checked) {
+                    nomeLanche = "X-Bacon (Clonado de X-Burguer)";
+                    total += CLONE_ACRESCIMO;
+                }
+            } else {
+                boxClonar.style.display = 'none';
+                chkClonar.checked = false;
+            }
+
+            resumoLanche.textContent = nomeLanche;
+
+            const adicionais = [];
+            checksAddon.forEach(chk => {
+                const parentLabel = chk.closest('.tb-pill-choice');
+                if (chk.checked) {
+                    parentLabel.classList.add('checked');
+                    adicionais.push(chk.dataset.label);
+                    total += parseFloat(chk.dataset.preco);
+                } else {
+                    parentLabel.classList.remove('checked');
+                }
+            });
+            resumoComplemento.textContent = adicionais.length > 0 ? adicionais.join(', ') : 'Nenhum';
+
+            const bebida = document.querySelector('.drink-radio:checked');
+            radiosDrink.forEach(r => {
+                const parent = r.closest('.tb-pill-choice');
+                if (r.checked) parent.classList.add('checked');
+                else parent.classList.remove('checked');
+            });
+
+            if (bebida) {
+                resumoBebida.textContent = bebida.dataset.label;
+                total += parseFloat(bebida.dataset.preco);
+            }
+
+            resumoValor.textContent = formatBRL(total);
+        }
+
+        const protoCards = document.querySelectorAll('.tb-proto-card');
+        protoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.dataset.protoId;
+                selectProto.value = id;
+                protoCards.forEach(c => {
+                    const active = c.dataset.protoId === id;
+                    c.classList.toggle('selected', active);
+                    c.setAttribute('aria-pressed', active ? 'true' : 'false');
+                });
+                atualizarResumo();
+            });
+        });
+
+        inputNome.addEventListener('input', atualizarResumo);
+        selectProto.addEventListener('change', atualizarResumo);
+        chkClonar.addEventListener('change', atualizarResumo);
+        checksAddon.forEach(c => c.addEventListener('change', atualizarResumo));
+        radiosDrink.forEach(d => d.addEventListener('change', atualizarResumo));
+
+        btnSubmit.addEventListener('click', () => {
+            if (!inputNome.value.trim()) {
+                inputNome.value = 'Pedro';
+            }
+            form.submit();
+        });
+
+        atualizarResumo();
+    })();
+</script>
+}
